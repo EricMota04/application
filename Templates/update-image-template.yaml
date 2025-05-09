@@ -1,0 +1,34 @@
+parameters:
+  - name: gitRepoUrl # E.g: 'https://$(gitUser):$(gitPAT)@dev.azure.com/solvexdominicana/PROYECTO/_git/REPOSITORIO'
+    type: string
+  - name: overlay  # Nombre de la carpeta del Overlay E.g: qa, dev, prod
+    type: string
+  - name: appName  # Nombre de la app dentro del Overlay. E.g: rbac.api
+    type: string
+  - name: image
+    type: string
+  - name: containerName # Nombre del container dentro del Kustomization.yaml E.g: -name: rbac.api
+    type: string
+  - name: checkoutRepo  # Nombre del Repo en el proyecto que contiene los manifiestos, argocd apps y kustomizations E.g Infotep-IaC
+    type: string
+    default: iac   # 🧠 puedes overridear este alias desde la pipeline que lo consuma
+
+jobs:
+  - job: UpdateImage
+    displayName: "🔄 Actualizar imagen Kustomize"
+    pool:
+      name: 'linux-latest'
+
+    steps:
+      - checkout: ${{ parameters.checkoutRepo }}
+
+      - script: |
+          chmod +x Scripts/update-image.sh
+          ./Scripts/update-image.sh \
+            '${{ parameters.gitRepoUrl }}' \
+            '${{ parameters.overlay }}' \
+            '${{ parameters.appName }}' \
+            '${{ parameters.image }}' \
+            '${{ parameters.containerName }}'
+        workingDirectory: $(Build.SourcesDirectory)/${{ parameters.checkoutRepo }}
+        displayName: "📦 Ejecutar script de actualización"
