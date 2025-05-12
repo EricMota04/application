@@ -21,10 +21,13 @@ WORKDIR=$(mktemp -d)
 echo "📁 Cloning into $WORKDIR"
 
 # ✅ Configure Git credentials using System.AccessToken
+git config --global user.email "sxdevops@solvex.com.do"
+git config --global user.name "Solvex DevOps"
 git config --global credential.helper store
 echo "https://azure:$ACCESS_TOKEN@dev.azure.com" > ~/.git-credentials
 
 # 🔄 Clone
+
 git clone --branch "$BRANCH" "$GIT_REPO_URL" "$WORKDIR"
 cd "$WORKDIR"
 
