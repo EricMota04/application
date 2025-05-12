@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: development
 resources:
-  - ../../../Base/microservice.api.chatbot.settings.csharp
+  - ../../../Base/microservice.api.chatbot.settings.csharp/
 
 patchesStrategicMerge:
   - patch-deployment.yaml

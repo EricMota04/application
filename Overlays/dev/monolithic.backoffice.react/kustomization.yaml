@@ -4,7 +4,7 @@ kind: Kustomization
 namespace: development
 
 resources:
-  - ../../../Base/monolithic.backoffice.react
+  - ../../../Base/monolithic.backoffice.react/
 
 patchesStrategicMerge:
   - patch-deployment.yaml

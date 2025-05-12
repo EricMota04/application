@@ -3,7 +3,7 @@ kind: Kustomization
 namespace: development
 
 resources:
-- ../../../Base/microservice.chatbot.puppet.csharp
+- ../../../Base/microservice.chatbot.puppet.csharp/
 
 patchesStrategicMerge:
 - patch-deployment.yaml
