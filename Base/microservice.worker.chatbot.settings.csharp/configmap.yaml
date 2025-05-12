@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: worker-settings-config
 data:
-
+  placeholder: "placeholder"
