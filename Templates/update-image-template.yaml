@@ -13,24 +13,19 @@ parameters:
     type: string
     default: iac
 
-jobs:
-  - job: UpdateImage
-    displayName: "🔄 Update Kustomize Image"
-    pool:
-      name: 'linux-latest'
-    steps:
-      - checkout: ${{ parameters.checkoutRepo }}
+steps:
+  - checkout: ${{ parameters.checkoutRepo }}
 
-      - script: |
-          chmod +x Scripts/update-image.sh
-          ./Scripts/update-image.sh \
-            '${{ parameters.gitRepoUrl }}' \
-            '${{ parameters.overlay }}' \
-            '${{ parameters.appName }}' \
-            '${{ parameters.image }}' \
-            '${{ parameters.containerName }}' \
-            '$(System.AccessToken)'
-        workingDirectory: $(Build.SourcesDirectory)/${{ parameters.checkoutRepo }}
-        displayName: "📦 Run update-image.sh"
-        env:
-          SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+  - script: |
+      chmod +x Scripts/update-image.sh
+      ./Scripts/update-image.sh \
+        '${{ parameters.gitRepoUrl }}' \
+        '${{ parameters.overlay }}' \
+        '${{ parameters.appName }}' \
+        '${{ parameters.image }}' \
+        '${{ parameters.containerName }}' \
+        '$(System.AccessToken)'
+    workingDirectory: $(Build.SourcesDirectory)/${{ parameters.checkoutRepo }}
+    displayName: "📦 Run update-image.sh"
+    env:
+      SYSTEM_ACCESSTOKEN: $(System.AccessToken)
