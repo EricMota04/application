@@ -15,7 +15,7 @@ parameters:
 
 jobs:
   - job: UpdateImage
-    displayName: "🔄 Actualizar imagen Kustomize"
+    displayName: "🔄 Update Kustomize Image"
     pool:
       name: 'linux-latest'
 
@@ -29,6 +29,9 @@ jobs:
             '${{ parameters.overlay }}' \
             '${{ parameters.appName }}' \
             '${{ parameters.image }}' \
-            '${{ parameters.containerName }}'
+            '${{ parameters.containerName }}' \
+            '$(System.AccessToken)'
         workingDirectory: $(Build.SourcesDirectory)/${{ parameters.checkoutRepo }}
-        displayName: "📦 Ejecutar script de actualización"
+        displayName: "📦 Run update-image.sh"
+        env:
+          SYSTEM_ACCESSTOKEN: $(System.AccessToken)
