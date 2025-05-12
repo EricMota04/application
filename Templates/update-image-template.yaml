@@ -1,17 +1,17 @@
 parameters:
-  - name: gitRepoUrl  # E.g: 'https://dev.azure.com/solvexdominicana/PROYECTO/_git/REPOSITORIO'
-    type: string
-  - name: overlay # Nombre de la carpeta del Overlay E.g: qa, dev, prod
-    type: string
-  - name: appName  # Nombre de la app dentro del Overlay. E.g: rbac.api
-    type: string
-  - name: image
-    type: string
-  - name: containerName  # Nombre del container dentro del Kustomization.yaml E.g: -name: rbac.api
-    type: string
-  - name: checkoutRepo # Nombre del Repo en el proyecto que contiene los manifiestos, argocd apps y kustomizations E.g Coosajo-IaC
-    type: string
-    default: iac
+- name: gitRepoUrl  # E.g: 'https://dev.azure.com/solvexdominicana/PROYECTO/_git/REPOSITORIO'
+  type: string
+- name: overlay # Nombre de la carpeta del Overlay E.g: qa, dev, prod
+  type: string
+- name: appName  # Nombre de la app dentro del Overlay. E.g: rbac.api
+  type: string
+- name: image
+  type: string
+- name: containerName  # Nombre del container dentro del Kustomization.yaml E.g: -name: rbac.api
+  type: string
+- name: checkoutRepo # Nombre del Repo en el proyecto que contiene los manifiestos, argocd apps y kustomizations E.g Coosajo-IaC
+  type: string
+  default: iac
 
 steps:
 - checkout: ${{ parameters.checkoutRepo }}
