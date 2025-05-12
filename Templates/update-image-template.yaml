@@ -29,6 +29,6 @@ steps:
         '${{ parameters.image }}' \
         '${{ parameters.containerName }}' \
         '$(System.AccessToken)'
-  workingDirectory: $(Build.SourcesDirectory)/${{ parameters.checkoutRepo }}
+    workingDirectory: $(Build.SourcesDirectory)/${{ parameters.checkoutRepo }}
   env:
     SYSTEM_ACCESSTOKEN: $(System.AccessToken)
