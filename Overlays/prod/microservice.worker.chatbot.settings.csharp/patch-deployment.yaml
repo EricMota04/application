@@ -1,0 +1,12 @@
+workerVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microservice-worker-chatbot-settings-csharp-deployment
+  project: chatbot
+spec:
+  replicas: 2
+  template:
+    spec:
+      containers:
+      - name:  microservice-worker-chatbot-settings-csharp-deployment
+        image: sxbotbuildercontainerregistry.azurecr.io/microservice.worker.chatbot.settings.csharp:latest

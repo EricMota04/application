@@ -1,0 +1,7 @@
+resources:
+  - ../../../Base/microservice.chatbot.puppet.csharp
+
+patchesStrategicMerge:
+  - patch-deployment.yaml
+
+namespace: production

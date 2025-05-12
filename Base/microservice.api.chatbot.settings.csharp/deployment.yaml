@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microservice-api-chatbot-settings-csharp-deployment
+  project: chatbot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: microservice-api-chatbot-settings-csharp-deployment
+  template:
+    metadata:
+      labels:
+        app: microservice-api-chatbot-settings-csharp-deployment
+    spec:
+      containers:
+      - name:  microservice-api-chatbot-settings-csharp-deployment
+        image: sxbotbuildercontainerregistry.azurecr.io/microservice.api.chatbot.settings.csharp:latest
+        envFrom:
+          - configMapRef:
+              name: api-settings-config
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "128mi"
+            cpu: "64m"
+          limits:
+            memory: "128mi"
+            cpu: "64m"
+        lifecycle:
+          preStop:
+            exec:
+              command: ["sh", "-c", "echo 'Shutting down...' && sleep 5"]
+      imagePullSecrets:
+        - name: imagepull
+      terminationGracePeriodSeconds: 30  

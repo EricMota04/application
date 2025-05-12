@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: microservice-chatbot-puppet-csharp-service
+  labels:
+    project: chatbot
+spec:
+  selector:
+    app:  microservice-chatbot-puppet-csharp-deployment
+  type: ClusterIP
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80

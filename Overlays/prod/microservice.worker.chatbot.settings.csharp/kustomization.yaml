@@ -1,0 +1,7 @@
+resources:
+  - ../../../Base/microservice.worker.chatbot.settings.csharp
+
+patchesStrategicMerge:
+  - patch-deployment.yaml
+
+namespace: production
