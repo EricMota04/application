@@ -28,7 +28,7 @@ echo "https://azure:$ACCESS_TOKEN@dev.azure.com" > ~/.git-credentials
 git clone --branch "$BRANCH" "$GIT_REPO_URL" "$WORKDIR"
 cd "$WORKDIR"
 
-OVERLAY_PATH="overlays/$OVERLAY/$APP_NAME"
+OVERLAY_PATH="Overlays/$OVERLAY/$APP_NAME"
 
 # ✅ Validate overlay path
 if [ ! -d "$OVERLAY_PATH" ]; then
