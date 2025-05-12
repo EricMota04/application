@@ -1,7 +1,12 @@
 resources:
-  - ../../../Base/microservice.chatbot.puppet.csharp
+- ../../../Base/microservice.chatbot.puppet.csharp
 
 patchesStrategicMerge:
-  - patch-deployment.yaml
-
+- patch-deployment.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
 namespace: development
+images:
+- name: microservice.chatbot.puppet.csharp
+  newName: sxbotbuildercontainerregistry.azurecr.io/microservice.chatbot.puppet.csharp
+  newTag: "20250512.20"
