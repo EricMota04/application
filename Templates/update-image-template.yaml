@@ -17,18 +17,18 @@ steps:
 - checkout: ${{ parameters.checkoutRepo }}
 
 - task: Bash@3
-    displayName: "📦 Run update-image.sh"
-    inputs:
-      targetType: 'inline'
-      script: |
-        chmod +x Scripts/update-image.sh
-        ./Scripts/update-image.sh \
-          '${{ parameters.gitRepoUrl }}' \
-          '${{ parameters.overlay }}' \
-          '${{ parameters.appName }}' \
-          '${{ parameters.image }}' \
-          '${{ parameters.containerName }}' \
-          '$(System.AccessToken)'
-    workingDirectory: $(Build.SourcesDirectory)/${{ parameters.checkoutRepo }}
-    env:
-      SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+  displayName: "📦 Run update-image.sh"
+  inputs:
+    targetType: 'inline'
+    script: |
+      chmod +x Scripts/update-image.sh
+      ./Scripts/update-image.sh \
+        '${{ parameters.gitRepoUrl }}' \
+        '${{ parameters.overlay }}' \
+        '${{ parameters.appName }}' \
+        '${{ parameters.image }}' \
+        '${{ parameters.containerName }}' \
+        '$(System.AccessToken)'
+  workingDirectory: $(Build.SourcesDirectory)/${{ parameters.checkoutRepo }}
+  env:
+    SYSTEM_ACCESSTOKEN: $(System.AccessToken)
