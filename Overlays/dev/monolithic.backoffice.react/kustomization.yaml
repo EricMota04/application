@@ -1,0 +1,7 @@
+resources:
+  - ../../../Base/monolithic.backoffice.react
+
+patchesStrategicMerge:
+  - patch-deployment.yaml
+
+namespace: development

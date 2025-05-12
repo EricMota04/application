@@ -1,0 +1,11 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microservice-api-chatbot-settings-csharp-deployment
+  project: chatbot
+spec:
+  template:
+    spec:
+      containers:
+      - name:  microservice-api-chatbot-settings-csharp-deployment
+        image: sxbotbuildercontainerregistry.azurecr.io/microservice.api.chatbot.settings.csharp:latest

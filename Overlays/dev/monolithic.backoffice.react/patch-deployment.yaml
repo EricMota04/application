@@ -1,0 +1,11 @@
+workerVersion: apps/v1
+kind: Deployment
+metadata:
+  name: monolithic-backoffice-react-deployment
+  project: chatbot
+spec:
+  template:
+    spec:
+      containers:
+      - name:  monolithic-backoffice-react-deployment
+        image: sxbotbuildercontainerregistry.azurecr.io/monolithic.backoffice.react:latest
