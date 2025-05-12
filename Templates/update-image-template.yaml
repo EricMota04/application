@@ -13,23 +13,23 @@ parameters:
     type: string
     default: iac   # 🧠 puedes overridear este alias desde la pipeline que lo consuma
 
-job: UpdateImage
-displayName: "🔄 Update Kustomize Image"
-pool:
-  name: 'linux-latest'
 
-steps:
-  - checkout: ${{ parameters.checkoutRepo }}
-  - script: |
-      chmod +x Scripts/update-image.sh
-      ./Scripts/update-image.sh \
-        '${{ parameters.gitRepoUrl }}' \
-        '${{ parameters.overlay }}' \
-        '${{ parameters.appName }}' \
-        '${{ parameters.image }}' \
-        '${{ parameters.containerName }}' \
-        '$(System.AccessToken)'
-    workingDirectory: $(Build.SourcesDirectory)/${{ parameters.checkoutRepo }}
-    displayName: "📦 Run update-image.sh"
-    env:
-      SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+- job: UpdateImage
+  displayName: "🔄 Update Kustomize Image"
+  pool:
+    name: 'linux-latest'
+  steps:
+    - checkout: ${{ parameters.checkoutRepo }}
+    - script: |
+        chmod +x Scripts/update-image.sh
+        ./Scripts/update-image.sh \
+          '${{ parameters.gitRepoUrl }}' \
+          '${{ parameters.overlay }}' \
+          '${{ parameters.appName }}' \
+          '${{ parameters.image }}' \
+          '${{ parameters.containerName }}' \
+          '$(System.AccessToken)'
+      workingDirectory: $(Build.SourcesDirectory)/${{ parameters.checkoutRepo }}
+      displayName: "📦 Run update-image.sh"
+      env:
+        SYSTEM_ACCESSTOKEN: $(System.AccessToken)
