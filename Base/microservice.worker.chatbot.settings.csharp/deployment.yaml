@@ -2,7 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: microservice-worker-chatbot-settings-csharp-deployment
-  project: chatbot
+  labels:
+    project: chatbot
 spec:
   replicas: 1
   selector:
@@ -14,24 +15,24 @@ spec:
         app: microservice-worker-chatbot-settings-csharp-deployment
     spec:
       containers:
-      - name:  microservice-worker-chatbot-settings-csharp-deployment
-        image: sxbotbuildercontainerregistry.azurecr.io/microservice.worker.chatbot.settings.csharp:latest
-        envFrom:
-          - configMapRef:
-              name: worker-settings-config
-        ports:
-        - containerPort: 80
-        resources:
-          requests:
-            memory: "128mi"
-            cpu: "64m"
-          limits:
-            memory: "128mi"
-            cpu: "64m"
-        lifecycle:
-          preStop:
-            exec:
-              command: ["sh", "-c", "echo 'Shutting down...' && sleep 5"]
+        - name: microservice-worker-chatbot-settings-csharp-deployment
+          image: sxbotbuildercontainerregistry.azurecr.io/microservice.worker.chatbot.settings.csharp:latest
+          envFrom:
+            - configMapRef:
+                name: worker-settings-config
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "64m"
+            limits:
+              memory: "128Mi"
+              cpu: "64m"
+          lifecycle:
+            preStop:
+              exec:
+                command: ["sh", "-c", "echo 'Shutting down...' && sleep 5"]
       imagePullSecrets:
         - name: imagepull
-      terminationGracePeriodSeconds: 30  
+      terminationGracePeriodSeconds: 30

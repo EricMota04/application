@@ -2,7 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: microservice-chatbot-puppet-csharp-deployment
-  project: chatbot
+  labels:
+    project: chatbot  # <- lo moví aquí porque "metadata.project" no es válido
 spec:
   replicas: 1
   selector:
@@ -14,24 +15,24 @@ spec:
         app: microservice-chatbot-puppet-csharp-deployment
     spec:
       containers:
-      - name:  microservice-chatbot-puppet-csharp-deployment
-        image: sxbotbuildercontainerregistry.azurecr.io/microservice.chatbot.puppet.csharp:latest
-        envFrom:
-          - configMapRef:
-              name: puppet-config
-        ports:
-        - containerPort: 80
-        resources:
-          requests:
-            memory: "128mi"
-            cpu: "64m"
-          limits:
-            memory: "128mi"
-            cpu: "64m"
-        lifecycle:
-          preStop:
-            exec:
-              command: ["sh", "-c", "echo 'Shutting down...' && sleep 5"]
+        - name: microservice-chatbot-puppet-csharp-deployment
+          image: sxbotbuildercontainerregistry.azurecr.io/microservice.chatbot.puppet.csharp:latest
+          envFrom:
+            - configMapRef:
+                name: puppet-config
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "64m"
+            limits:
+              memory: "128Mi"
+              cpu: "64m"
+          lifecycle:
+            preStop:
+              exec:
+                command: ["sh", "-c", "echo 'Shutting down...' && sleep 5"]
       imagePullSecrets:
         - name: imagepull
-      terminationGracePeriodSeconds: 30  
+      terminationGracePeriodSeconds: 30

@@ -2,7 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: monolithic-backoffice-react-deployment
-  project: chatbot
+  labels:
+    project: chatbot
 spec:
   replicas: 1
   selector:
@@ -14,21 +15,21 @@ spec:
         app: monolithic-backoffice-react-deployment
     spec:
       containers:
-      - name:  monolithic-backoffice-react-deployment
-        image: sxbotbuildercontainerregistry.azurecr.io/monolithic.backoffice.react:latest
-        ports:
-        - containerPort: 80
-        resources:
-          requests:
-            memory: "128mi"
-            cpu: "64m"
-          limits:
-            memory: "128mi"
-            cpu: "64m"
-        lifecycle:
-          preStop:
-            exec:
-              command: ["sh", "-c", "echo 'Shutting down...' && sleep 5"]
+        - name: monolithic-backoffice-react-deployment
+          image: sxbotbuildercontainerregistry.azurecr.io/monolithic.backoffice.react:latest
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "64m"
+            limits:
+              memory: "128Mi"
+              cpu: "64m"
+          lifecycle:
+            preStop:
+              exec:
+                command: ["sh", "-c", "echo 'Shutting down...' && sleep 5"]
       imagePullSecrets:
         - name: imagepull
-      terminationGracePeriodSeconds: 30  
+      terminationGracePeriodSeconds: 30
