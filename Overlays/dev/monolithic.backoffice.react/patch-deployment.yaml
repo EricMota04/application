@@ -8,4 +8,3 @@ spec:
     spec:
       containers:
       - name:  monolithic-backoffice-react-deployment
-        image: sxbotbuildercontainerregistry.azurecr.io/monolithic.backoffice.react:latest

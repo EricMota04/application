@@ -9,4 +9,3 @@ spec:
     spec:
       containers:
       - name:  microservice-chatbot-puppet-csharp-deployment
-        image: sxbotbuildercontainerregistry.azurecr.io/microservice.chatbot.puppet.csharp:latest

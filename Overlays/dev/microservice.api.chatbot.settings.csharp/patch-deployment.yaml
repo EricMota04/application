@@ -8,4 +8,3 @@ spec:
     spec:
       containers:
       - name:  microservice-api-chatbot-settings-csharp-deployment
-        image: sxbotbuildercontainerregistry.azurecr.io/microservice.api.chatbot.settings.csharp:latest
