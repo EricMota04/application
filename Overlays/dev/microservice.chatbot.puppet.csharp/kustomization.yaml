@@ -4,8 +4,11 @@ namespace: development
 resources:
 - ../../../Base/microservice.chatbot.puppet.csharp/
 
-patchesStrategicMerge:
-- patch-deployment.yaml
+patches:
+  - path: patch-deployment.yaml
+    target:
+      kind: Deployment
+      name: microservice.chatbot.puppet.csharp-deployment
 
 images:
 - name: microservice.chatbot.puppet.csharp

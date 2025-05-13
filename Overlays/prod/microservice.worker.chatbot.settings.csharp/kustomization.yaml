@@ -3,5 +3,8 @@ namespace: production
 resources:
   - ../../../Base/microservice.worker.chatbot.settings.csharp/
 
-patchesStrategicMerge:
-  - patch-deployment.yaml
+patches:
+  - path: patch-deployment.yaml
+    target:
+      kind: Deployment
+      name: microservice-worker-chatbot-settings-csharp-deployment

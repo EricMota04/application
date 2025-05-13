@@ -5,5 +5,8 @@ namespace: development
 resources:
   - ../../../Base/monolithic.backoffice.react/
 
-patchesStrategicMerge:
-  - patch-deployment.yaml
+patches:
+  - path: patch-deployment.yaml
+    target:
+      kind: Deployment
+      name: monolithic-backoffice-react-deployment
