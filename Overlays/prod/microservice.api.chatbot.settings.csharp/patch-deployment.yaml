@@ -5,7 +5,3 @@ metadata:
   project: chatbot
 spec:
   replicas: 2
-  template:
-    spec:
-      containers:
-      - name:  microservice-api-chatbot-settings-csharp-deployment

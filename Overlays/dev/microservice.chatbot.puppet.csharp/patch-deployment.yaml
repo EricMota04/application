@@ -4,7 +4,4 @@ metadata:
   name: microservice-chatbot-puppet-csharp-deployment
   project: chatbot
 spec:
-  template:
-    spec:
-      containers:
-      - name:  microservice-chatbot-puppet-csharp-deployment
+  replicas: 1
